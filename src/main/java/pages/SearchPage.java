@@ -35,6 +35,12 @@ public class SearchPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
+    private void pause(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException ignored) {}
+    }
+
     public boolean isSearchResultsUrl() {
         try {
             return wait.until(ExpectedConditions.urlContains("/search/results"));
@@ -53,9 +59,11 @@ public class SearchPage {
                         ExpectedConditions.visibilityOfElementLocated(resultCards),
                         ExpectedConditions.visibilityOfElementLocated(resultCandidates)
                 ));
+                pause(2000); // Visual demonstration pause showing search results clearly
                 return true;
             } catch (Exception ignored) {}
 
+            pause(2000);
             return driver.getCurrentUrl().contains("/search/results");
         } catch (Exception e) {
             return driver.getCurrentUrl().contains("/search/results");
@@ -64,7 +72,7 @@ public class SearchPage {
 
     public String clickFirstResult() {
         try {
-            Thread.sleep(2000); // Allow dynamic React DOM to attach candidate elements
+            pause(1500); // Visual pause on results page before clicking
             List<WebElement> elements = driver.findElements(resultCandidates);
             for (WebElement el : elements) {
                 try {
@@ -75,7 +83,7 @@ public class SearchPage {
                         } catch (Exception e) {
                             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
                         }
-                        Thread.sleep(3000);
+                        pause(3000); // Visual pause showing destination profile/company loaded
                         return driver.getCurrentUrl();
                     }
                 } catch (Exception ignored) {}
@@ -86,7 +94,7 @@ public class SearchPage {
             for (WebElement ml : allMainLinks) {
                 if (ml.isDisplayed()) {
                     ((JavascriptExecutor) driver).executeScript("arguments[0].click();", ml);
-                    Thread.sleep(3000);
+                    pause(3000);
                     return driver.getCurrentUrl();
                 }
             }
@@ -116,6 +124,7 @@ public class SearchPage {
             containerVisible = driver.findElement(detailContainer).isDisplayed();
         } catch (Exception ignored) {}
 
+        pause(2500); // Pause so the target page is clearly seen on screen recording
         return hasExpectedPath || headingVisible || containerVisible;
     }
 

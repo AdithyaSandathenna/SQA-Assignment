@@ -25,9 +25,16 @@ public class LoginPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
+    private void pause(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException ignored) {}
+    }
+
     public void open(String url) {
         driver.get(url);
         wait.until(ExpectedConditions.presenceOfElementLocated(signInButton));
+        pause(1000);
     }
 
     public String getTitle() {
@@ -78,16 +85,19 @@ public class LoginPage {
         WebElement el = getVisibleElement(usernameField);
         el.clear();
         el.sendKeys(username);
+        pause(1000); // Visual demonstration pause
     }
 
     public void enterPassword(String password) {
         WebElement el = getVisibleElement(passwordField);
         el.clear();
         el.sendKeys(password);
+        pause(1000); // Visual demonstration pause
     }
 
     public void clickSignIn() {
         WebElement btn = getVisibleElement(signInButton);
+        pause(800);
         try {
             btn.click();
         } catch (Exception e) {
@@ -108,10 +118,11 @@ public class LoginPage {
         try {
             WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(10));
             WebElement err = shortWait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage));
+            pause(2000); // Visual pause so error feedback is clearly seen on video
             return err != null && err.isDisplayed();
         } catch (Exception e) {
-            // Check if page URL stayed on login or checkpoint with error feedback
             String currentUrl = driver.getCurrentUrl();
+            pause(2000);
             return currentUrl.contains("login") || currentUrl.contains("checkpoint") || driver.getPageSource().contains("Wrong email or password");
         }
     }

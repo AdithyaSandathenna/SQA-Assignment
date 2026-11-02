@@ -30,6 +30,7 @@ public class BaseTest {
     protected String invalidUsername;
     protected String invalidPassword;
     protected String searchTerm;
+    protected static int demoDelay = 1500;
 
     public BaseTest() {
         loadConfig();
@@ -59,6 +60,16 @@ public class BaseTest {
         invalidUsername = System.getProperty("invalid.username", properties.getProperty("invalid.username", "adi@gmail.com"));
         invalidPassword = System.getProperty("invalid.password", properties.getProperty("invalid.password", "56565678"));
         searchTerm = System.getProperty("search.term", properties.getProperty("search.term", "Software Testing"));
+        
+        try {
+            demoDelay = Integer.parseInt(properties.getProperty("demo.delay.millis", "1500"));
+        } catch (Exception ignored) {}
+    }
+
+    public static void pause(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException ignored) {}
     }
 
     @BeforeMethod
@@ -83,6 +94,7 @@ public class BaseTest {
 
         // Open Base URL
         driver.get(baseUrl);
+        pause(800);
     }
 
     @AfterMethod
@@ -90,6 +102,9 @@ public class BaseTest {
         if (result.getStatus() == ITestResult.FAILURE) {
             takeScreenshot("failure_" + result.getName());
         }
+
+        // Brief demonstration pause so the final test state is clearly visible before closing browser
+        pause(demoDelay);
 
         if (driver != null) {
             try {

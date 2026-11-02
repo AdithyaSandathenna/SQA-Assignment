@@ -22,13 +22,21 @@ public class HomePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
+    private void pause(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException ignored) {}
+    }
+
     public boolean isLoaded() {
         try {
             String url = driver.getCurrentUrl();
             if (url.contains("/feed") || url.contains("/search") || url.contains("/mynetwork")) {
+                pause(1500); // Allow feed to display clearly in video
                 return true;
             }
             wait.until(ExpectedConditions.presenceOfElementLocated(searchBox));
+            pause(1500);
             return true;
         } catch (Exception e) {
             return driver.getCurrentUrl().contains("linkedin.com");
@@ -57,9 +65,12 @@ public class HomePage {
 
     public SearchPage search(String query) {
         WebElement box = getVisibleSearchBox();
+        pause(800);
         box.click();
         box.clear();
+        pause(600);
         box.sendKeys(query);
+        pause(1000); // Visual demonstration pause showing typed search term
         box.sendKeys(Keys.ENTER);
 
         try {

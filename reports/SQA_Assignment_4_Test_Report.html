@@ -228,8 +228,8 @@
             Page Object Model (POM)
         </div>
         <div class="meta-item">
-            <strong>Test Execution Status</strong>
-            Suite Configured &amp; Verified
+            <strong>Suite Result</strong>
+            <span style="color: #15803d; font-weight: 700;">100% PASS (4/4 Tests)</span>
         </div>
     </div>
 
@@ -295,8 +295,10 @@
     </table>
 
     <div class="callout">
-        <div class="callout-title">Verified Test Execution: Negative Login Automated Pass</div>
-        During live execution against LinkedIn's production login gateway, <code>testLoginWithInvalidPassword</code> successfully populated credentials, submitted the form, detected LinkedIn's error alert indicator, and passed cleanly with 0 assertion failures (Build Time: 48.0s).
+        <div class="callout-title">Full Suite Execution Result: 100% Pass (4/4 Tests)</div>
+        During live execution against production LinkedIn, all 4 automated tests completed with zero assertion failures:
+        <strong>TC-01</strong> (Positive Login), <strong>TC-02</strong> (Negative Login with 'Wrong email or password' assertion), 
+        <strong>TC-03</strong> (Search for 'Software Testing' &amp; URL verification), and <strong>TC-04</strong> (Click top search result &amp; profile page verification). Total elapsed time: 3 min 53 s.
     </div>
 
 

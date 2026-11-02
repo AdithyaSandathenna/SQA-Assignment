@@ -22,7 +22,7 @@ public class LoginPage extends BasePage {
     // Potential error locators for negative test validation
     private final By passwordError = By.id("error-for-password");
     private final By usernameError = By.id("error-for-username");
-    private final By generalAlertBanner = By.cssSelector("#signal-error-small, div[role='alert'], p[role='alert'], div.alert, .form__input--error, [id*='error'], [class*='error']");
+    private final By generalAlertBanner = By.xpath("//*[contains(text(), 'Wrong email') or contains(text(), 'Wrong password') or contains(text(), 'check your email') or @id='signal-error-small' or @role='alert']");
 
     // Security checkpoint / CAPTCHA challenge indicators
     private final By checkpointContainer = By.cssSelector("#checkpoint-container, #captcha-internal, iframe[src*='checkpoint'], div[data-view-name*='challenge']");

@@ -2,7 +2,7 @@
 setlocal
 
 echo =====================================================================
-echo  LinkedIn UI Automation Test Suite - KDU IT3153 SQA Assignment 04
+echo  LinkedIn UI Automation Test Suite - KDU IT3153 SQA Assignment
 echo =====================================================================
 
 REM Ensure Maven is in PATH
@@ -28,13 +28,11 @@ echo.
 echo Starting LinkedIn Test Suite execution...
 echo.
 
-call mvn test -DsuiteXmlFile=src/test/resources/testng.xml %*
+call mvn test %*
 
 echo.
 echo =====================================================================
 echo  Test Run Completed.
 echo  - TestNG HTML Report: target/surefire-reports/index.html
-echo  - Screenshots (if any): reports/screenshots/
-echo  - Log File: reports/logs/automation.log
+echo  - Screenshots (on failure): screenshots/
 echo =====================================================================
-pause

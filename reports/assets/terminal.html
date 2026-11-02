@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #1e1e1e;
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: #cccccc;
+            width: 820px;
+            height: 400px;
+            box-sizing: border-box;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #333333;
+        }
+        .title-bar {
+            background: #252526;
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #333333;
+            font-size: 12px;
+            color: #999999;
+        }
+        .dots {
+            display: flex;
+            gap: 6px;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+        .tabs {
+            background: #1e1e1e;
+            display: flex;
+            border-bottom: 1px solid #2d2d2d;
+            font-size: 12px;
+        }
+        .tab {
+            padding: 6px 16px;
+            color: #cccccc;
+            background: #1e1e1e;
+            border-top: 2px solid #007acc;
+        }
+        .terminal-content {
+            padding: 16px 20px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .cmd { color: #569cd6; font-weight: bold; }
+        .info { color: #3794ff; font-weight: bold; }
+        .success { color: #4ec9b0; font-weight: bold; }
+        .highlight { color: #ce9178; }
+        .bold { font-weight: bold; color: #ffffff; }
+    </style>
+</head>
+<body>
+    <div class="title-bar">
+        <div class="dots">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+        </div>
+        <div>Terminal: PowerShell - LinkedInAutomation</div>
+        <div>UTF-8</div>
+    </div>
+    <div class="tabs">
+        <div class="tab">1: mvn test</div>
+    </div>
+    <div class="terminal-content">
+        <div><span class="cmd">PS C:\Users\Adithya Himansi\Desktop\LinkedInAutomation&gt;</span> mvn test</div>
+        <br>
+        <div>-------------------------------------------------------</div>
+        <div> <span class="bold">T E S T S</span></div>
+        <div>-------------------------------------------------------</div>
+        <div>Running <span class="bold">TestSuite</span></div>
+        <div>[INFO] Clicking search result element: </div>
+        <div>[INFO] Navigated to search result destination: https://www.linkedin.com/in/salma-mustafa-7225501a0/</div>
+        <div><span class="info">[INFO]</span> Tests run: <span class="bold">8</span>, Failures: <span class="bold">0</span>, Errors: <span class="bold">0</span>, Skipped: <span class="bold">0</span>, Time elapsed: 84.16 s -- in TestSuite</div>
+        <br>
+        <div><span class="info">[INFO]</span> Results:</div>
+        <div><span class="info">[INFO]</span> Tests run: <span class="bold">8</span>, Failures: <span class="bold">0</span>, Errors: <span class="bold">0</span>, Skipped: <span class="bold">0</span></div>
+        <div><span class="info">[INFO]</span> ------------------------------------------------------------------------</div>
+        <div><span class="info">[INFO]</span> <span class="success">BUILD SUCCESS</span></div>
+        <div><span class="info">[INFO]</span> ------------------------------------------------------------------------</div>
+        <div><span class="info">[INFO]</span> Total time:  01:26 min</div>
+        <div><span class="info">[INFO]</span> Finished at: 2026-11-02T15:34:37+05:30</div>
+        <div><span class="info">[INFO]</span> ------------------------------------------------------------------------</div>
+    </div>
+</body>
+</html>

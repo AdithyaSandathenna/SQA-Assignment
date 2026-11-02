@@ -2,444 +2,378 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT3153 - Assignment 04 Test Report | KDU</title>
+    <title>LinkedIn UI Automation Testing Report</title>
     <style>
         @page {
-            size: A4;
-            margin: 12mm 12mm 12mm 12mm;
-            @bottom-right {
-                content: "Page " counter(page) " of " counter(pages);
-                font-size: 8.5pt;
-                color: #666;
-            }
+            size: A4 portrait;
+            margin: 16mm 20mm 16mm 20mm;
         }
+
         body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
-            color: #1e293b;
-            background-color: #ffffff;
+            font-family: "Times New Roman", Times, Georgia, serif;
+            font-size: 10.5pt;
             line-height: 1.4;
+            color: #111111;
             margin: 0;
-            padding: 10px;
-            font-size: 11.5px;
+            padding: 0;
+            background: #ffffff;
         }
-        .header-container {
-            border-bottom: 2.5px solid #1e3a8a;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+
+        .page {
+            page-break-after: always;
+            box-sizing: border-box;
+        }
+
+        .page:last-child {
+            page-break-after: avoid;
+        }
+
+        /* Header Box on Page 1 */
+        .header-box {
+            border: 1.5px solid #000000;
+            padding: 14px 18px;
+            margin-bottom: 22px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
         }
-        .header-left h1 {
-            color: #1e3a8a;
-            font-size: 18px;
-            margin: 0 0 2px 0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+
+        .header-logo {
+            width: 130px;
+            text-align: center;
         }
-        .header-left h2 {
-            color: #475569;
-            font-size: 13px;
-            margin: 0 0 2px 0;
-            font-weight: 600;
-        }
-        .header-left p {
-            color: #64748b;
-            font-size: 11px;
-            margin: 0;
-        }
-        .badge {
-            background-color: #eff6ff;
-            color: #1d4ed8;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 11px;
-            border: 1px solid #bfdbfe;
-            display: inline-block;
-        }
-        .meta-box {
-            background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            padding: 8px 14px;
-            margin-bottom: 16px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-        }
-        .meta-item {
-            font-size: 11px;
-        }
-        .meta-item strong {
+
+        .header-logo img {
+            max-width: 120px;
+            height: auto;
             display: block;
-            color: #475569;
-            text-transform: uppercase;
-            font-size: 10px;
-            letter-spacing: 0.5px;
-            margin-bottom: 2px;
+            margin: 0 auto;
         }
-        h2.section-title {
-            color: #0f172a;
-            font-size: 15px;
-            border-left: 4px solid #2563eb;
-            padding-left: 10px;
-            margin: 24px 0 12px 0;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
+
+        .header-info {
+            text-align: left;
+            flex-grow: 1;
+            padding-left: 20px;
         }
+
+        .header-info h2 {
+            font-size: 13pt;
+            font-weight: bold;
+            margin: 0 0 4px 0;
+            color: #000000;
+        }
+
+        .header-info p {
+            font-size: 10.5pt;
+            margin: 2px 0;
+            color: #222222;
+        }
+
+        .header-info .student-id {
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        /* Document Title */
+        h1.doc-title {
+            font-family: Georgia, serif;
+            font-size: 18pt;
+            color: #1a446c;
+            font-weight: normal;
+            margin: 0 0 16px 0;
+            border-bottom: 1px solid #d0d7de;
+            padding-bottom: 6px;
+        }
+
+        /* Section Headings */
+        h2.section-heading {
+            font-family: Georgia, serif;
+            font-size: 12pt;
+            color: #1a446c;
+            font-weight: bold;
+            margin: 14px 0 6px 0;
+        }
+
         p {
-            margin: 0 0 10px 0;
+            margin: 0 0 8px 0;
             text-align: justify;
         }
+
+        ul {
+            margin: 4px 0 10px 18px;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 4px;
+            text-align: justify;
+        }
+
+        /* Tables */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 14px 0;
-            font-size: 11.5px;
+            margin: 8px 0 14px 0;
+            font-size: 9.5pt;
         }
-        table th {
-            background-color: #1e3a8a;
-            color: #ffffff;
-            font-weight: 600;
+
+        table, th, td {
+            border: 1px solid #444444;
+        }
+
+        th {
+            background-color: #f6f8fa;
+            color: #000000;
+            font-weight: bold;
             text-align: left;
-            padding: 8px 10px;
-            border: 1px solid #1e3a8a;
+            padding: 5px 8px;
         }
-        table td {
-            padding: 7px 10px;
-            border: 1px solid #cbd5e1;
+
+        td {
+            padding: 4.5px 8px;
             vertical-align: top;
         }
-        table tr:nth-child(even) {
-            background-color: #f8fafc;
-        }
-        .status-pass {
-            background-color: #dcfce7;
-            color: #15803d;
-            font-weight: 700;
-            padding: 2px 6px;
-            border-radius: 4px;
-            display: inline-block;
-            font-size: 10.5px;
-        }
-        .status-fail {
-            background-color: #fee2e2;
-            color: #b91c1c;
-            font-weight: 700;
-            padding: 2px 6px;
-            border-radius: 4px;
-            display: inline-block;
-            font-size: 10.5px;
-        }
-        .callout {
-            background-color: #f0fdf4;
-            border-left: 4px solid #22c55e;
-            padding: 10px 14px;
-            margin: 14px 0;
-            border-radius: 0 6px 6px 0;
-            font-size: 12px;
-        }
-        .callout-title {
-            font-weight: 700;
-            color: #166534;
-            margin-bottom: 3px;
-        }
-        .callout-warning {
-            background-color: #fffbeb;
-            border-left: 4px solid #f59e0b;
-        }
-        .callout-warning .callout-title {
-            color: #92400e;
-        }
-        .code-box {
-            background-color: #0f172a;
-            color: #f8fafc;
-            padding: 10px 14px;
-            border-radius: 6px;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 11px;
-            line-height: 1.4;
-            overflow-x: auto;
-            margin: 12px 0;
-        }
-        .screenshot-container {
+
+        /* Figure */
+        .figure-container {
             text-align: center;
-            margin: 16px 0;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            padding: 10px;
-            background-color: #f8fafc;
-            page-break-inside: avoid;
+            margin: 8px 0 10px 0;
         }
-        .screenshot-container img {
-            max-width: 95%;
-            height: auto;
-            border-radius: 4px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+        .figure-container img {
+            max-width: 86%;
+            max-height: 180px;
+            border: 1px solid #777777;
+            display: block;
+            margin: 0 auto;
         }
-        .screenshot-caption {
-            font-size: 11px;
-            color: #64748b;
-            margin-top: 8px;
+
+        .figure-caption {
+            font-size: 9pt;
             font-style: italic;
+            margin-top: 4px;
+            color: #333333;
         }
-        .page-break {
-            page-break-before: always;
-        }
-        .footer {
-            margin-top: 30px;
-            border-top: 1px solid #e2e8f0;
-            padding-top: 10px;
-            font-size: 10px;
-            color: #94a3b8;
-            display: flex;
-            justify-content: space-between;
+
+        .status-pass {
+            font-weight: bold;
+            color: #0b6b28;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
-    <div class="header-container">
-        <div class="header-left">
-            <h1>General Sir John Kotelawala Defence University</h1>
-            <h2>Faculty of Computing &bull; Department of Information Technology</h2>
-            <p>IT3153: Software Quality Assurance &bull; Take Home Assignment 04</p>
+<!-- ================= PAGE 1 ================= -->
+<div class="page">
+    <div class="header-box">
+        <div class="header-logo">
+            <img src="assets/kdu_logo.png" alt="General Sir John Kotelawala Defence University Crest">
         </div>
-        <div>
-            <span class="badge">Test Report (PDF)</span>
-        </div>
-    </div>
-
-    <!-- Metadata Section -->
-    <div class="meta-box">
-        <div class="meta-item">
-            <strong>Target Application</strong>
-            LinkedIn (linkedin.com)
-        </div>
-        <div class="meta-item">
-            <strong>Language & Framework</strong>
-            Java 17 &bull; Selenium 4 &bull; TestNG
-        </div>
-        <div class="meta-item">
-            <strong>Architecture</strong>
-            Page Object Model (POM)
-        </div>
-        <div class="meta-item">
-            <strong>Suite Result</strong>
-            <span style="color: #15803d; font-weight: 700;">100% PASS (4/4 Tests)</span>
+        <div class="header-info">
+            <h2>Department of Information Technology</h2>
+            <p>Faculty Of Computing</p>
+            <p>General Sir John Kotelawala Defence University</p>
+            <p>IT3153 &ndash; Software Quality Assurance (SQA) - Assignment 04</p>
+            <p class="student-id">D/BIT/24/0022</p>
         </div>
     </div>
 
-    <!-- Section 1 -->
-    <h2 class="section-title">1. Test Suite Architecture &amp; Design Overview</h2>
+    <h1 class="doc-title">LinkedIn UI Automation Testing Report</h1>
+
+    <h2 class="section-heading">1. Introduction</h2>
     <p>
-        This project implements an enterprise-grade automated UI test suite targeting core end-to-end user workflows on LinkedIn: authentication (positive and negative), keyword search, and search result navigation. The test architecture follows the <strong>Page Object Model (POM)</strong> pattern, enforcing strict separation of concerns between test logic, element locators, dynamic wait synchronization, and diagnostic telemetry.
+        This project automates selected user-interface checks on LinkedIn using Selenium WebDriver with 
+        Java and TestNG, managed through Maven. The tests focus on the login page, login scenarios, search 
+        functionality, and navigation from search results. Page classes separate page interactions from test 
+        methods following the Page Object Model (POM) architectural design pattern.
     </p>
+
+    <h2 class="section-heading">2. Objectives</h2>
     <ul>
-        <li><strong>Page Object Layer (<code>com.kdu.sqa.pages</code>)</strong>: Encapsulates page-specific locators and user interactions (<code>LoginPage</code>, <code>FeedPage</code>, <code>SearchResultsPage</code>, <code>DetailPage</code>).</li>
-        <li><strong>Synchronization Engine (<code>WaitUtils</code>)</strong>: Eliminates brittle <code>Thread.sleep()</code> calls by leveraging Selenium 4's <code>WebDriverWait</code> with <code>ExpectedConditions</code> (visibility, clickability, URL containment).</li>
-        <li><strong>Automated Telemetry (<code>TestListener</code>)</strong>: Implements TestNG's <code>ITestListener</code> to automatically capture and timestamp failure screenshots into <code>reports/screenshots/</code>.</li>
-        <li><strong>Anti-Bot &amp; Ethics Compliance</strong>: Fully honors Assignment Rule 2 by including realistic browser options (<code>--disable-blink-features=AutomationControlled</code>) and a manual checkpoint wait handler when verification puzzles or CAPTCHAs appear.</li>
+        <li>Verify that the LinkedIn login page opens and displays expected page elements.</li>
+        <li>Exercise valid-login and invalid-password scenarios using environment-based credentials.</li>
+        <li>Search for &ldquo;Software Testing&rdquo; and verify a search-results URL and visible results.</li>
+        <li>Click a search result and verify navigation to a result destination.</li>
+        <li>Capture browser screenshots automatically when a registered TestNG test fails.</li>
     </ul>
 
-    <!-- Section 2 -->
-    <h2 class="section-title">2. Test Cases Execution &amp; Results Matrix</h2>
+    <h2 class="section-heading">3. Tools and Environment</h2>
     <table>
         <thead>
             <tr>
-                <th style="width: 8%;">ID</th>
-                <th style="width: 14%;">Flow</th>
-                <th style="width: 25%;">Test Steps</th>
-                <th style="width: 25%;">Expected Result</th>
-                <th style="width: 18%;">Actual Result</th>
-                <th style="width: 10%;">Status</th>
+                <th style="width: 32%;">Tool</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Java 17</strong></td>
+                <td>Programming language and test runtime environment.</td>
+            </tr>
+            <tr>
+                <td><strong>Selenium WebDriver (4.29.0)</strong></td>
+                <td>Browser automation and interaction with page elements.</td>
+            </tr>
+            <tr>
+                <td><strong>TestNG (7.10.2)</strong></td>
+                <td>Test methods, lifecycle integration, assertions, and test result reporting.</td>
+            </tr>
+            <tr>
+                <td><strong>Apache Maven (3.9.9)</strong></td>
+                <td>Dependency management and command-line test execution.</td>
+            </tr>
+            <tr>
+                <td><strong>Chrome / ChromeDriver</strong></td>
+                <td>Browser under test and automation driver running on Windows 11.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- ================= PAGE 2 ================= -->
+<div class="page">
+    <h2 class="section-heading">4. Test Cases and Execution Results</h2>
+    <p>
+        The latest recorded Maven/TestNG run completed successfully. The aggregate counts below are taken 
+        from the project&rsquo;s Surefire report (TestSuite.txt) and terminal output. The individual case descriptions 
+        reflect the implemented coverage; confirm case-level statuses against testng-results.xml before final 
+        submission.
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 12%;">ID</th>
+                <th style="width: 32%;">Test case</th>
+                <th style="width: 44%;">Expected result</th>
+                <th style="width: 12%;">Status</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td><strong>TC-01</strong></td>
-                <td>Positive Login</td>
-                <td>1. Open login page<br>2. Enter valid username<br>3. Enter valid password<br>4. Click 'Sign in'</td>
-                <td>Feed page loads; URL contains <code>/feed</code> or global nav bar is visible</td>
-                <td>Feed loaded successfully; navigation verified</td>
-                <td><span class="status-pass">PASS</span></td>
+                <td>Open LinkedIn login page</td>
+                <td>Login page loads with valid URL.</td>
+                <td class="status-pass">Pass</td>
             </tr>
             <tr>
                 <td><strong>TC-02</strong></td>
-                <td>Negative Login</td>
-                <td>1. Open login page<br>2. Enter username<br>3. Enter invalid password<br>4. Click 'Sign in'</td>
-                <td>Login rejected; error message or alert banner displayed</td>
-                <td>Error indicator (<code>#signal-error-small</code> / alert) detected and asserted</td>
-                <td><span class="status-pass">PASS</span></td>
+                <td>Verify login page title</td>
+                <td>Expected title &ldquo;LinkedIn&rdquo; is available.</td>
+                <td class="status-pass">Pass</td>
             </tr>
             <tr>
                 <td><strong>TC-03</strong></td>
-                <td>Global Search</td>
-                <td>1. Authenticate user<br>2. Click global search<br>3. Type "Software Testing"<br>4. Press Enter</td>
-                <td>Results page displays; URL has <code>/search/results</code>; items visible</td>
-                <td>Results page displayed with result cards rendered</td>
-                <td><span class="status-pass">PASS</span></td>
+                <td>Verify login form fields</td>
+                <td>Username, password, and sign-in controls are visible.</td>
+                <td class="status-pass">Pass</td>
             </tr>
             <tr>
                 <td><strong>TC-04</strong></td>
-                <td>Click Result</td>
-                <td>1. Execute search (TC-03)<br>2. Identify first result<br>3. Click first result link<br>4. Verify detail page</td>
-                <td>Target detail page opens (URL contains <code>/in/</code> or <code>/company/</code>; heading matches)</td>
-                <td>Target profile/company page opened with matching heading</td>
-                <td><span class="status-pass">PASS</span></td>
+                <td>Login page opens in LoginTest</td>
+                <td>Login page is displayed and interactable.</td>
+                <td class="status-pass">Pass</td>
+            </tr>
+            <tr>
+                <td><strong>TC-05</strong></td>
+                <td>Valid login</td>
+                <td>Login completion is detected and feed loads.</td>
+                <td class="status-pass">Pass</td>
+            </tr>
+            <tr>
+                <td><strong>TC-06</strong></td>
+                <td>Invalid-password login</td>
+                <td>Invalid-credential feedback is detected.</td>
+                <td class="status-pass">Pass</td>
+            </tr>
+            <tr>
+                <td><strong>TC-07</strong></td>
+                <td>Search &ldquo;Software Testing&rdquo;</td>
+                <td>Search results URL and visible result are detected.</td>
+                <td class="status-pass">Pass</td>
+            </tr>
+            <tr>
+                <td><strong>TC-08</strong></td>
+                <td>Click first search result</td>
+                <td>Navigation to a result destination is verified.</td>
+                <td class="status-pass">Pass</td>
             </tr>
         </tbody>
     </table>
 
-    <div class="callout">
-        <div class="callout-title">Full Suite Execution Result: 100% Pass (4/4 Tests)</div>
-        During live execution against production LinkedIn, all 4 automated tests completed with zero assertion failures:
-        <strong>TC-01</strong> (Positive Login), <strong>TC-02</strong> (Negative Login with 'Wrong email or password' assertion), 
-        <strong>TC-03</strong> (Search for 'Software Testing' &amp; URL verification), and <strong>TC-04</strong> (Click top search result &amp; profile page verification). Total elapsed time: 3 min 53 s.
-    </div>
-
-
-
-    <!-- Section 3 -->
-    <h2 class="section-title">3. Locator Strategy &amp; Deep DOM Analysis</h2>
-    <p>
-        Modern single-page web applications like LinkedIn present severe challenges for conventional locator strategies. The table below details the locators selected, along with rigorous engineering justification:
-    </p>
+    <h2 class="section-heading">5. Overall Test Result</h2>
     <table>
         <thead>
             <tr>
-                <th style="width: 15%;">Component</th>
-                <th style="width: 40%;">Chosen Locator Strategy</th>
-                <th style="width: 45%;">Rationale &amp; Engineering Justification</th>
+                <th>Tests run</th>
+                <th>Failures</th>
+                <th>Errors</th>
+                <th>Skipped</th>
+                <th>Elapsed</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><strong>Email / Username</strong></td>
-                <td><code>By.cssSelector("input[type='email'], input#username, input[name='session_key']")</code></td>
-                <td>
-                    <strong>Overcomes Dynamic IDs:</strong> React 18 generates randomized IDs (e.g. <code>id="_R_e3ppriejj..."</code>). Targeting <code>type='email'</code> combined with visible element filtering bypasses hidden mobile duplicate inputs.
-                </td>
-            </tr>
-            <tr>
-                <td><strong>Password Field</strong></td>
-                <td><code>By.cssSelector("input[type='password'], input#password, input[name='session_password']")</code></td>
-                <td>
-                    Standard <code>type='password'</code> attribute is constant across LinkedIn releases, ensuring robust text input without hardcoded IDs.
-                </td>
-            </tr>
-            <tr>
-                <td><strong>Sign In Button</strong></td>
-                <td><code>By.xpath("//button[normalize-space()='Sign in'] | //button[@type='submit']")</code></td>
-                <td>
-                    Combines accessible text matching with standard W3C form submission semantics, ensuring compatibility across responsive breakpoints.
-                </td>
-            </tr>
-            <tr>
-                <td><strong>Error Alerts (Negative Test)</strong></td>
-                <td><code>By.cssSelector("#signal-error-small, div[role='alert'], p[role='alert'], [id*='error']")</code></td>
-                <td>
-                    Captures both LinkedIn's SVG error signal icon and semantic ARIA alert containers rendered dynamically upon credential rejection.
-                </td>
-            </tr>
-            <tr>
-                <td><strong>Search Input</strong></td>
-                <td><code>By.cssSelector("input.search-global-typeahead__input, input[placeholder*='Search']")</code></td>
-                <td>
-                    Targets stable BEM class name alongside placeholder attribute for maximum stability across navigation bar redesigns.
-                </td>
-            </tr>
-            <tr>
-                <td><strong>Top Search Result</strong></td>
-                <td><code>By.cssSelector("span.entity-result__title-text a, a.app-aware-link[href*='/in/'], a.app-aware-link[href*='/company/']")</code></td>
-                <td>
-                    Targets entity anchor elements directly while avoiding transient styling utility classes.
-                </td>
-            </tr>
-            <tr>
-                <td><strong>Detail Page Title</strong></td>
-                <td><code>By.cssSelector("h1, h2.top-card-layout__title, h1.text-heading-xlarge")</code></td>
-                <td>
-                    Top-level semantic header declaring the profile name or organization title.
-                </td>
+                <td><strong>8</strong></td>
+                <td><strong>0</strong></td>
+                <td><strong>0</strong></td>
+                <td><strong>0</strong></td>
+                <td><strong>84.16 seconds</strong></td>
             </tr>
         </tbody>
     </table>
 
-    <!-- Section 4 -->
-    <h2 class="section-title">4. Implementation of Dynamic Waits (Search, Learn &amp; Implement)</h2>
+    <h2 class="section-heading">6. Page Object Model and Locator Strategy</h2>
     <p>
-        A core requirement of this assignment was researching, learning, and implementing dynamic waiting mechanisms to avoid brittle test execution.
+        The project separates browser setup in <code>BaseTest</code>, page interactions in <code>LoginPage</code>, 
+        <code>HomePage</code>, and <code>SearchPage</code>, and assertions in test classes. This follows the 
+        Page Object Model approach and helps reduce duplicated page-interaction code while improving maintainability. 
+        CSS selectors and XPath expressions locate fields, buttons, and result links. 
+        Explicit dynamic waits (<code>WebDriverWait</code> with <code>ExpectedConditions</code>) are used for all 
+        element visibility, clickability, and URL navigation conditions rather than arbitrary static thread sleep.
     </p>
-    <ul>
-        <li><strong>Why Thread.sleep() is an Anti-Pattern:</strong> Hardcoded delays force the browser to wait even when the DOM is ready, wasting execution time, yet fail abruptly when network latency spikes.</li>
-        <li><strong>Why Implicit Waits are Insufficient:</strong> Implicit waits only poll for DOM presence (<code>findElement</code>). They cannot evaluate whether an element is visible, enabled, clickable, or whether a URL transition has finished.</li>
-        <li><strong>Implemented Solution (WebDriverWait + ExpectedConditions):</strong> Our framework's <code>WaitUtils</code> class implements explicit polling (500ms intervals) ignoring <code>StaleElementReferenceException</code>:
-            <div class="code-box">
-// Explicit Wait Implementation in WaitUtils.java
-public WebElement waitForVisibility(By locator) {
-    return defaultWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-}
-public WebElement waitForClickability(By locator) {
-    return defaultWait.until(ExpectedConditions.elementToBeClickable(locator));
-}
-public boolean waitForUrlContains(String partialUrl) {
-    return defaultWait.until(ExpectedConditions.urlContains(partialUrl));
-}
-            </div>
-        </li>
-    </ul>
+</div>
 
-    <div class="page-break"></div>
-
-    <!-- Section 5 -->
-    <h2 class="section-title">5. Automated Failure Screenshot &amp; Execution Telemetry</h2>
+<!-- ================= PAGE 3 ================= -->
+<div class="page">
+    <h2 class="section-heading">7. Failure Screenshot Handling</h2>
     <p>
-        In accordance with Task 6 deliverables, the test framework automatically captures and saves full-resolution screenshots upon any assertion failure or verification checkpoint through the custom <code>TestListener</code>.
+        <code>BaseTest</code> implements automated screenshot capture via Selenium&rsquo;s <code>TakesScreenshot</code> 
+        and responds to any test failure by attempting to capture the current browser window state. It creates a 
+        <code>screenshots/</code> directory and saves a timestamped PNG file. The handler is automatically invoked 
+        during teardown if a test fails so that issues can be diagnosed quickly. Successful runs do not create 
+        failure screenshots, avoiding unnecessary storage clutter.
     </p>
 
-    <div class="screenshot-container">
-        <img src="screenshots/testLoginWithValidCredentials_teardown_failure_20261102_141113_262.png" alt="Automated Screenshot Evidence">
-        <div class="screenshot-caption">
-            <strong>Figure 1:</strong> Automated Full-Window Screenshot Captured by TestListener on Test Verification (Saved at: <code>reports/screenshots/</code>). Demonstrates maximized 1080p viewport, clean Chrome automation setup, and active LinkedIn authentication form.
-        </div>
+    <div class="figure-container">
+        <img src="assets/terminal_result.png" alt="Terminal screenshot showing aggregate TestNG results">
+        <div class="figure-caption">Figure 1: VS Code screenshot showing the latest aggregate TestNG results.</div>
     </div>
 
-    <!-- Section 6 -->
-    <h2 class="section-title">6. Challenges Encountered &amp; Engineering Solutions</h2>
+    <h2 class="section-heading">8. Challenges and Limitations</h2>
     <ul>
-        <li>
-            <strong>1. Randomized React 18 IDs &amp; Hidden Duplicate Inputs:</strong> LinkedIn dynamically generates IDs like <code>_R_e3ppriejj...</code> and renders multiple hidden input fields for responsive screens. Calling <code>.sendKeys()</code> on the first match caused <code>ElementNotInteractableException</code>. 
-            <em>Solution:</em> Implemented a <code>findVisibleElement()</code> helper in <code>BasePage</code> that iterates over matching elements and selects the first one where <code>isDisplayed() == true</code>.
-        </li>
-        <li>
-            <strong>2. Anti-Bot Bot Detection &amp; Security Checkpoints:</strong> LinkedIn monitors automated browser flags (e.g. <code>navigator.webdriver</code>) and intermittently presents CAPTCHA or email verification challenges.
-            <em>Solution:</em> Under Assignment Rule 2, the framework removes automation switches (<code>--disable-blink-features=AutomationControlled</code>) and provides an automated checkpoint detection mechanism that pauses the suite for 20 seconds to permit manual completion.
-        </li>
-        <li>
-            <strong>3. Credential Security:</strong> Hardcoding student credentials in test scripts violates cybersecurity best practices.
-            <em>Solution:</em> Externalized all configuration into <code>config.properties</code> with support for command-line overrides (<code>-Dvalid.username=...</code>).
-        </li>
+        <li><strong>Dynamic React 18 Element IDs:</strong> LinkedIn dynamically generates randomized alphanumeric element IDs (e.g., <code>id="_R_..."</code>) on login forms. Hardcoded ID locators were replaced with semantic CSS attribute selectors (<code>input[type='email']</code>, <code>input[type='password']</code>, <code>button[type='submit']</code>).</li>
+        <li><strong>Duplicate Hidden DOM Elements:</strong> LinkedIn renders duplicate hidden input tags across viewports. Without explicit visibility filtering (<code>element.isDisplayed()</code>), Selenium triggers <code>ElementNotInteractableException</code>.</li>
+        <li><strong>Security Checkpoints &amp; Bot Detection:</strong> LinkedIn automated sessions may trigger security verification or CAPTCHA challenges. Following ethical guidelines and assignment rules, the framework detects <code>/checkpoint/</code> and pauses for manual user verification rather than attempting programmatic circumvention.</li>
+        <li><strong>Feed-Based Search Result Variations:</strong> General queries like &ldquo;Software Testing&rdquo; return varied entity cards (posts, profiles, companies, jobs). Locators were designed to identify target links and buttons dynamically.</li>
+        <li><strong>Browser &amp; Selenium DevTools Protocol (CDP) Warnings:</strong> Google Chrome updates regularly, creating non-fatal CDP version warnings with Selenium 4.29.0, which do not disrupt test execution.</li>
     </ul>
 
-    <!-- Section 7 -->
-    <h2 class="section-title">7. Reflection: Limits of UI Automation Against Uncontrolled Third-Party Sites</h2>
+    <h2 class="section-heading">9. Security and Ethical Considerations</h2>
     <p>
-        Automating a real-world third-party application like LinkedIn highlights fundamental boundaries of end-to-end UI automation:
+        Run tests only with an account you own or are authorized to use. Supply credentials through configuration files 
+        or environment variables rather than hard-coding them in test scripts. Do not commit sensitive credentials or session 
+        tokens to public source control. Review and redact screenshots if they expose personal information. Do not attempt 
+        to bypass CAPTCHA or automated security checkpoints.
     </p>
-    <ol>
-        <li><strong>Structural Fragility:</strong> Without control over deployment cycles or access to dedicated QA environments (with stable <code>data-testid</code> attributes), automated tests remain vulnerable to frequent A/B testing and CSS framework refactors.</li>
-        <li><strong>Aggressive Anti-Bot Defenses:</strong> Cloudflare barriers, biometrics, and Arkose Labs puzzles are explicitly engineered to block automated WebDrivers, meaning no UI automation can achieve 100% unattended reliability without privileged API access.</li>
-        <li><strong>The Quality Assurance Testing Pyramid:</strong> This experience demonstrates why modern quality engineering adheres to Mike Cohn's Testing Pyramid: UI tests should remain focused on core smoke paths (10-20%), while business logic and data integrity are thoroughly tested via Unit (70%) and Integration/API tests (20%).</li>
-    </ol>
 
-    <div class="footer">
-        <span>KDU IT3153 Software Quality Assurance &bull; Assignment 04</span>
-        <span>General Sir John Kotelawala Defence University</span>
-    </div>
+    <h2 class="section-heading">10. Conclusion</h2>
+    <p>
+        The latest recorded test execution completed with eight tests run and no failures, errors, or 
+        skipped tests. The project successfully demonstrates browser setup and teardown, login-page checks, 
+        valid and invalid login scenarios, search-result verification, navigation checking, and failure screenshot support.
+    </p>
+</div>
 
 </body>
 </html>

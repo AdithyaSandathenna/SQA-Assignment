@@ -1,0 +1,10 @@
+target/
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+*.log
+reports/logs/
+.DS_Store
+Thumbs.db

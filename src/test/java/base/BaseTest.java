@@ -135,4 +135,8 @@ public class BaseTest {
             return null;
         }
     }
+
+    public WebDriver getDriver() {
+        return driver;
+    }
 }
